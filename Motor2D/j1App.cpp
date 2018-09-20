@@ -60,6 +60,9 @@ bool j1App::Awake()
 	// TODO 3: Load config.xml file using load_file() method from the xml_document class.
 	// If everything goes well, load the top tag inside the xml_node property
 	// created in the last TODO
+	result = config_doc.load_file("config.xml");
+	config = config_doc.child("config");
+	title = config.child("title").value();
 
 	bool ret = true;
 
@@ -221,4 +224,9 @@ const char* j1App::GetArgv(int index) const
 		return args[index];
 	else
 		return NULL;
+}
+
+const char* j1App::GetTitle() const
+{
+	return config.child("app").child("title").value();
 }

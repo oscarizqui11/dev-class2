@@ -5,6 +5,8 @@
 #include "j1Module.h"
 #include "PugiXml\src\pugixml.hpp"
 
+std::string const XML_FILE_PATH = "E://UNIVERSIDAD/2o 2o/Develoment/dev-class2/Game/config.xml";
+
 // Modules
 class j1Window;
 class j1Input;
@@ -41,6 +43,7 @@ public:
 	// Exposing some properties for reading
 	int GetArgc() const;
 	const char* GetArgv(int index) const;
+	const char* GetTitle() const;
 
 private:
 
@@ -79,9 +82,15 @@ private:
 	// TODO 2: Create two new variables from pugui namespace:
 	// a xml_document to store the while config file and
 	// a xml_node to read specific branches of the xml
+	
+	pugi::xml_document config_doc;
+	pugi::xml_node config;
+	pugi::xml_parse_result result;
 
 	int					argc;
 	char**				args;
+
+	const char*			title;
 };
 
 extern j1App* App; // No student is asking me about that ... odd :-S
